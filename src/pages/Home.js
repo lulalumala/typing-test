@@ -2,18 +2,28 @@ import Nav from "../components/Nav"
 import styled from "styled-components"
 
 const HomeContainer = styled.div`
+background:#759F82;
+height:100vh;
+padding-top:5em;
 `
 const SelectContainer=styled.div`
 display:flex;
 flex-direction:column;
 gap:2em;
-align-items:center;`
+align-items:center;
+padding:2em 0;
+
+`
 const Container=styled.div`
 margin:0 auto;
-width:80%;`
+width:80%;
+background:#EDE4E0;
+border-radius:5px;
+box-shadow:0 0 5px #EDE4E0;`
 const HomeHead=styled.h2`
 color:#759F82;`
-const HomePara=styled.p``
+const HomePara=styled.p`
+color:#425F57;`
 const SelectOption=styled.select`
 display:flex;
 width:40%;
@@ -30,18 +40,15 @@ background:#C8DBBE;
 border-radius:5px;
 border:none;
 cursor:pointer;
-color:white;
 
 `
-
-
 
 const Home = () => {
 
     return (
+        <>
+        <Nav/>
         <HomeContainer>
-            
-            <Nav/>
             <Container>
             <SelectContainer>
             <HomeHead>Check Your Typing Skills</HomeHead>
@@ -65,6 +72,7 @@ const Home = () => {
             </SelectContainer>
             </Container>
         </HomeContainer>
+        </>
     )
 }
 export default Home
