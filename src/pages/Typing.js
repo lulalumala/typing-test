@@ -1,6 +1,9 @@
+import Nav from "../components/Nav"
+
 const Typing = () => {
     return (
         <>
+            <Nav/>
         </>
     )
 }
