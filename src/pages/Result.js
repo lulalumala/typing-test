@@ -1,6 +1,10 @@
+import Nav from "../components/Nav"
+
 const Result = () => {
+    
     return (
         <>
+            <Nav/>
         </>
     )
 }
