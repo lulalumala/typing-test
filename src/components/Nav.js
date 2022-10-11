@@ -1,12 +1,10 @@
-import Home from "../pages/Home"
-import Login from "../pages/Login"
-import Result from '../pages/Result'
-import Typing from "../pages/Typing"
+
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const NavContainer = styled.div`
 padding:1.5em 0;
+background:#EDE4E0;
 `
 const P = styled.p`font-size: 1.5rem;`
 const Div = styled.div`display: flex;
