@@ -4,6 +4,7 @@ const NavContainer=styled.div``
 const Container=styled.div`
 margin:0 auto;
 width:80%;
+padding:3em 0; 
 `
 const Input=styled.input`
 display:flex;
@@ -11,6 +12,7 @@ flex-direction:column;
 outline:none;
 border:none;
 border-bottom:2px  solid #759F82;
+width:40%;
 
 `
 
