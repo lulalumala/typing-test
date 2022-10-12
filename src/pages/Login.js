@@ -1,29 +1,36 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useState } from "react"
-const NavContainer=styled.div``
+const NavContainer=styled.div`
+`
 const Container=styled.div`
 margin:0 auto;
-width:80%;
+width:50%;
 padding:4em 0; 
+
 `
 const Input=styled.input`
 display:flex;
 flex-direction:column;
+justify-content:center;
 outline:none;
 border:none;
 border-bottom:2px  solid #759F82;
-width:40%;
+width:40vw;
+`
+const Label=styled.p`
+padding:1.5em 0;
 
 `
 const Para=styled.p``
 const Button=styled.button`
-padding:1em .5em;
+padding:1em 2em;
 border:none;
 border-radius:5px;
 background:#759F82;
 color:white;
-margin-left:15em;`
+margin-left:20em;
+margin-top:3em;`
 
 
 const Login = () => {
@@ -45,6 +52,9 @@ if(message.Email===""){
 if(message.Password===""){
     setMessage({...message,Password:"Please input your password"})
 }
+else{
+    
+}
 }
 catch{
 
@@ -57,13 +67,13 @@ catch{
             <NavContainer>
                 <Container>
                     <Para>{message.Name}</Para>
-                    <label>Name:</label>
+                    <Label>Name:</Label>
                     <Input type="text" />
                     <Para>{message.Email}</Para>
-                    <label>Email:</label>
+                    <Label>Email:</Label>
                     <Input type="text" />
                     <Para>{message.Password}</Para>
-                    <label>Password:</label>
+                    <Label>Password:</Label>
                     <Input type="text" />
                     <Button onClick={handleLogin}>Login</Button>
                 </Container>
