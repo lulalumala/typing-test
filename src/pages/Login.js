@@ -5,7 +5,7 @@ const NavContainer=styled.div``
 const Container=styled.div`
 margin:0 auto;
 width:80%;
-padding:3em 0; 
+padding:4em 0; 
 `
 const Input=styled.input`
 display:flex;
@@ -17,6 +17,13 @@ width:40%;
 
 `
 const Para=styled.p``
+const Button=styled.button`
+padding:1em .5em;
+border:none;
+border-radius:5px;
+background:#759F82;
+color:white;
+margin-left:15em;`
 
 
 const Login = () => {
@@ -49,15 +56,16 @@ catch{
             <Nav/>
             <NavContainer>
                 <Container>
-                    <Para></Para>
+                    <Para>{message.Name}</Para>
                     <label>Name:</label>
                     <Input type="text" />
-                    <Para></Para>
+                    <Para>{message.Email}</Para>
                     <label>Email:</label>
                     <Input type="text" />
-                    <Para></Para>
+                    <Para>{message.Password}</Para>
                     <label>Password:</label>
                     <Input type="text" />
+                    <Button onClick={handleLogin}>Login</Button>
                 </Container>
             </NavContainer>
         </>
