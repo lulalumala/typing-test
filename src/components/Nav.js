@@ -6,14 +6,19 @@ const NavContainer = styled.div`
 padding:1.5em 0;
 background:#EDE4E0;
 `
-const P = styled.p`font-size: 1.5rem;`
-const Div = styled.div`display: flex;
-gap: 1em;`
+const P = styled.p`
+font-size: 1.5rem;
+`
+const Div = styled.div`
+display: flex;
+gap: 1em;
+`
 const Container = styled.div`
 display: flex;
 justify-content: space-between;
 margin:0 auto;
-width:80%;`
+width:80%;
+`
 
 const Nav = () => {
     return (
