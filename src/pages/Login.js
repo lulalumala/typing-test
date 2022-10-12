@@ -16,6 +16,8 @@ border-bottom:2px  solid #759F82;
 width:40%;
 
 `
+const Para=styled.p``
+
 
 const Login = () => {
 const [message, setMessage]=useState({
@@ -26,14 +28,14 @@ Password:""
 
 const handleLogin=()=>{
 try{ 
-if(message.Name==""){
+if(message.Name===""){
 setMessage({...message, Name:"Please write your name"})
 }
-if(message.Email==""){
+if(message.Email===""){
     setMessage({...message, Email:"Please write your email address"})
 }
 
-if(message.Password==""){
+if(message.Password===""){
     setMessage({...message,Password:"Please input your password"})
 }
 }
