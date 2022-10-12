@@ -17,6 +17,7 @@ margin-top: 1em;
 `
 
 const Div = styled.div`
+font-size: 2rem;
 `
 const P = styled.p`font-size:2.5rem;`
 const TypingArea = styled.div`
@@ -34,6 +35,9 @@ const Typing = () => {
         startTime:0,
         elapsedTime: "",
         typedWords: [],
+        errors: [],
+        correctWords: [],
+        text:[]
         
 })
 
@@ -56,9 +60,15 @@ const Typing = () => {
 
             <TypingContainer>
                 <TypingArea>
-                    <Div>
-                    </Div>
-                    <Textarea ></Textarea>
+                    <Div>{randomWord} </Div>
+                    <Textarea onChange={(e) => {
+                        let inputValue = e.target.value
+                        // setStates({...states, typedWords:inputValue})
+                        let inputArray=inputValue.split(" ")
+                        console.log(inputArray)
+                        // console.log({typedWords)
+                        
+                    }} ></Textarea>
 
                 </TypingArea>
             </TypingContainer>
