@@ -1,5 +1,6 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
+import { useState } from "react"
 
 const TypingContainer = styled.div`
 background:#759F82;
@@ -28,16 +29,36 @@ padding:1.5em;
 
 
 const Typing = () => {
+
+    const [states, setStates] = useState({
+        startTime:0,
+        elapsedTime: "",
+        typedWords: [],
+        
+})
+
+
+    const words = [
+        "The quick brown fox jumps over a lazy dog.He stores golden fish in aquariums.",
+        "Tongue twister! Kantai can tie a tie, why can't I tie a tie like Kantai tie a tie?",
+        "So social shosho saw a source show.does she sells sea shells at the sea shore ? She sells sea shells at the seashore.",
+        "Learning never exhausts the mind.",
+        "The only way to do great work is to love what you do."
+    ]
+    const randomWord=words[Math.floor(Math.random()*words.length)]
+    const text = randomWord.split(" ")
+    console.log(text)
+    console.log(randomWord)
+
     return (
         <>
             <Nav />
 
             <TypingContainer>
                 <TypingArea>
-                    <Div><P>The quick brown fox jumps over a lazy dog. He stores golden fish in aquariums.
-                    </P>
-                        <P>Tongue twister! Kantai can tie a tie, why can't I tie a tie like Kantai tie a tie? So social shosho saw a source show. does she sells sea shells at the sea shore? She sells sea shells at the seashore</P></Div>
-                    <Textarea></Textarea>
+                    <Div>
+                    </Div>
+                    <Textarea ></Textarea>
 
                 </TypingArea>
             </TypingContainer>
