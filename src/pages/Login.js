@@ -1,5 +1,6 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
+import { useState } from "react"
 const NavContainer=styled.div``
 const Container=styled.div`
 margin:0 auto;
@@ -17,6 +18,10 @@ width:40%;
 `
 
 const Login = () => {
+const [message, setMessage]=useState({
+
+})
+
     return (
         <>
             <Nav/>
