@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Result from "./pages/Result";
 import Typing from "./pages/Typing";
-
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Route path="/login" element={<Login/>} ></Route>
         <Route path="/typing" element={<Typing/>} ></Route>
         <Route path="/result" element={<Result/>} ></Route>
+        <Route path="/signup" element={<Signup/>} ></Route>
       </Routes>
     </BrowserRouter>
   )
