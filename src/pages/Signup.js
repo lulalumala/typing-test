@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { useState, useEffect } from "react"
 import Nav from "../components/Nav"
+import { addDoc, collection} from "firebase/firestore"
+import { db } from "../firebase"
 const SignContainer=styled.div``
 const Container=styled.div`
 margin:0 auto; 
@@ -24,10 +26,11 @@ border-radius:5px;
 color:white;
 margin-left:15em;
 `
+const Para=styled.p``
 
 
 const Signup=()=>{
-    const [state, setState]=useState=({
+    const [input, setInput]=useState({
         firstName:"",
         lastName:"",
         userName:"",
@@ -36,7 +39,8 @@ const Signup=()=>{
         password:"",
         confirmPassword:""
     })
-    
+
+    const [message, setMessage]=useState()
     const [error,setError]=useState({
         firstError:"",
         lastError:"",
@@ -46,30 +50,82 @@ const Signup=()=>{
         passwordError:"",
         confirmError:""
     })
+
+    const handleSignup=async()=>{
+        try{ 
+          if(input.firstName===""){
+            setError({...error, firstError:"Please write your first name"})
+          }
+          if(input.lastName===""){
+            setError({...error, laststError:"Please write your last name"})
+          }
+          if(input.userName===""){
+            setError({...error, userError:"Please write your username"})
+          }
+          if(input.emailAddress===""){
+            setError({...error, emailError:"Please write your email address"})
+          }
+          if(input.nationality===""){
+            setError({...error, nationalityError:"Please write your nationality"})
+          }
+          if(input.passwordError===""){
+            setError({...error, passwordError:"Please write your password"})
+          }
+          if(input.confirmPassword===""){
+            setError({...error, confirmError:"Please confirm your password"})
+          }
+          else{
+            setInput({
+                firstName:"",
+                lastName:"",
+                userName:"",
+                emailAddress:"",
+                nationality:"",
+                password:"",
+                confirmPassword:""
+            })
+          }
+        }
+        catch(error){
+            console.log("error signing up:", error)
+
+        }
+    }
     return(
         <>
         <Nav/>
         <SignContainer>
             <Container>
+                <Para>{error.firstError}</Para>
                 <Label>First Name:</Label>
                 <Input type="text"/>
+
+                <Para>{error.lastError}</Para>
                 <Label>Last Name:</Label>
                 <Input type="text"/>
+
+                <Para>{error.userError}</Para>
                 <Label>UserName:</Label>
                 <Input type="text"/>
+
+                <Para>{error.emailError}</Para>
                 <Label>Email Address:</Label>
                 <Input type="email address"/>
+
+                <Para>{error.nationalityError}</Para>
                 <Label>Nationality:</Label>
                 <Input type="text"/>
+
+                <Para>{error.passwordError}</Para>
                 <Label>Password:</Label>
                 <Input type="password"/>
+
+                <Para>{error.confirmError}</Para>
                 <Label>Confirm Password:</Label>
-                <Button>Signup</Button>
+                <Button onClick={handleSignup}>Signup</Button>
                
             </Container>
         </SignContainer>
-
-
         </>
     )
 }
