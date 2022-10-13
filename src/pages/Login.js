@@ -1,6 +1,8 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useState } from "react"
+import { db } from "../firebase"
+import { collection, addDoc } from "firebase/firestore"; 
 const NavContainer=styled.div`
 `
 const Container=styled.div`
@@ -33,14 +35,17 @@ margin-left:20em;
 margin-top:3em;`
 
 
-const Login = () => {
+const Login =() => {
 const [message, setMessage]=useState({
 Name:"",
 Email:"",
 Password:""
 })
+const [success,setSuccess]=useState("")
 
-const handleLogin=()=>{
+const [color,setColor]=useState("")
+
+const handleLogin=async()=>{
 try{ 
 if(message.Name===""){
 setMessage({...message, Name:"Please write your name"})
@@ -52,14 +57,24 @@ if(message.Email===""){
 if(message.Password===""){
     setMessage({...message,Password:"Please input your password"})
 }
-else{
-    
-}
-}
-catch{
 
+else{
+    await addDoc(collection(db, "typing-test"), message)
+        setSuccess("Successfully logged in")
+        setColor("#38E54D")}
+        console.log("message")
+        setMessage({
+            Name:"",
+            Email:"",
+            Password:""
+        })
+}
+catch(error){
+
+    console.log("Unable to login:",error)
 }
 }
+
 
     return (
         <>
@@ -76,6 +91,7 @@ catch{
                     <Label>Password:</Label>
                     <Input type="text" />
                     <Button onClick={handleLogin}>Login</Button>
+
                 </Container>
             </NavContainer>
         </>
