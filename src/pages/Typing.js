@@ -1,6 +1,7 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
+import { setIndexConfiguration } from "firebase/firestore"
 
 
 
@@ -9,8 +10,9 @@ background:#759F82;
 height:100vh;
 `
 
-const Textarea = styled.textarea`
+const TextDiv = styled.div`
 background: inherit;
+border: 1px solid black;
 width: 100%;
 outline: none;
 padding: .5em 0;
@@ -21,7 +23,7 @@ margin-top: 1em;
 const Div = styled.div`
 font-size: 2rem;
 `
-const P = styled.p`font-size:2.5rem;`
+// const P = styled.p`font-size:2.5rem;`
 const TypingArea = styled.div`
 width: 80%;
 margin: 0 auto;
@@ -33,10 +35,10 @@ padding:1.5em;
 
 const Typing = () => {
     useEffect(() => {
-        textAreaRef.current.focus()
+        textDivRef.current.focus()
     }, [])
     
-    const textAreaRef = useRef("")
+    const textDivRef = useRef("")
      
 
     const [states, setStates] = useState({
@@ -65,21 +67,30 @@ const Typing = () => {
     const text = randomWord.split(" ")
 
     const onChangeFunction = (e) => {
-        const inputValue = e.target.value
-        if (inputValue.split(" ").length === text.length + 1) {
+        const inputValue = e.target.innerText
+        if (inputValue.split(" ").length === text.length+1 ) {
             setStates(prev => ({ ...prev, typedWords: [...prev.typedWords, inputValue] }))
             setStates(prev => ({ ...prev, originalText: [...prev.originalText, text.join(" ")] }))
-            textAreaRef.current.value = ""
-            console.log(states)
+            textDivRef.current.innerText = ""
         }
 
+        console.log(inputValue)
         console.log(e)
-        console.log(textAreaRef.current.value)
+        console.log(textDivRef.current.innerText)
       
 
         // check errors and correct elements
+        for (let char of inputValue) {
+          
+                const indexOfChar = inputValue.indexOf(char)
+               randomWord.charAt(indexOfChar)==char?console.log("correct"):console.log("incorrect")
+            if (randomWord.charAt(indexOfChar)==char) {
+            inputValue.innerHTML=`<span style="color:red">${char} </span>`
+        }  
+        }
+      }
 
-    }
+    
 
     return (
 
@@ -89,7 +100,7 @@ const Typing = () => {
             <TypingContainer>
                 <TypingArea>
                     <Div>{randomWord} </Div>
-                    <Textarea  onChange={(e) => onChangeFunction(e)} ref={textAreaRef} defaultValue={textAreaRef.current.value} ></Textarea>
+                    <TextDiv contentEditable onInput={(e) => onChangeFunction(e)} ref={textDivRef} defaultValue={textDivRef.current.value} ></TextDiv>
 
                 </TypingArea>
             </TypingContainer>
