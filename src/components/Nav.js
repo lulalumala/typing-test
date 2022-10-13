@@ -30,6 +30,7 @@ const Nav = () => {
             <Div>
                 <P><Link to="/typing">Typing</Link></P>
                 <P><Link to="/result">Result</Link></P>
+                <P><Link to="/signup">Signup</Link></P>
                 <P><Link to="/login">Login</Link></P>
                 </Div>
                 </Container>
