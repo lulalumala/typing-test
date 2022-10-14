@@ -41,21 +41,26 @@ Name:"",
 Email:"",
 Password:""
 })
-const [success,setSuccess]=useState("")
+const [error, setError]=useState({
+    nameError:"",
+    emailError:"",
+    passwordError:""
+})
 
+const [success,setSuccess]=useState("")
 const [color,setColor]=useState("")
 
 const handleLogin=async()=>{
 try{ 
 if(message.Name===""){
-setMessage({...message, Name:"Please write your name"})
+setError({...error, Name:"Please write your name"})
 }
 if(message.Email===""){
-    setMessage({...message, Email:"Please write your email address"})
+    setError({...error, Email:"Please write your email address"})
 }
 
 if(message.Password===""){
-    setMessage({...message,Password:"Please input your password"})
+    setError({...error,Password:"Please input your password"})
 }
 
 else{
@@ -81,15 +86,17 @@ catch(error){
             <Nav/>
             <NavContainer>
                 <Container>
-                    <Para>{message.Name}</Para>
-                    <Label>Name:</Label>
-                    <Input type="text" />
-                    <Para>{message.Email}</Para>
-                    <Label>Email:</Label>
-                    <Input type="text" />
-                    <Para>{message.Password}</Para>
+                    <Para>{success}</Para>
+                    <Para>{error.Name}</Para>
+                    <Label>UserName:</Label>
+                    <Input type="text" onChange={(event)=>setMessage({...message,Name:event.target.value})}/>
+                    <Para>{error.Email}</Para>
+                    <Label>Email Address:</Label>
+                    <Input type="text" onChange={(event)=>setMessage({...message,Email:event.target.value})}/>
+                    <Para>{error.Password}</Para>
                     <Label>Password:</Label>
-                    <Input type="text" />
+                    <Input type="text" onChange={(event)=>setMessage({...message,Password:event.target.value})}/>
+
                     <Button onClick={handleLogin}>Login</Button>
 
                 </Container>
