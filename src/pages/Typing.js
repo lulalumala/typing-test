@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from "react"
 // import { setIndexConfiguration } from "firebase/firestore"
 
 
-
 const TypingContainer = styled.div`
 background:#759F82;
 height:100vh;
@@ -50,7 +49,6 @@ const Typing = ({timeSelected, setTimeSelected}) => {
     }, [])
 
     const textDivRef = useRef("")
-
 
     const [states, setStates] = useState({
         startTime: 0,
