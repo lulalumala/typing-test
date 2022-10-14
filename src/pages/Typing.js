@@ -1,7 +1,7 @@
 import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
-import { setIndexConfiguration } from "firebase/firestore"
+// import { setIndexConfiguration } from "firebase/firestore"
 
 
 const TypingContainer = styled.div`
@@ -18,6 +18,15 @@ padding: .5em 0;
 font-size: 2rem;
 margin-top: 1em;
 `
+const TimerDiv = styled.div`
+position: absolute;
+right: 0;
+top: 0;
+font-size: 1.5rem;
+width: fit-content;
+padding: 1em;
+border: 1px solid black;
+`
 
 const Div = styled.div`
 font-size: 2rem;
@@ -28,20 +37,23 @@ width: 80%;
 margin: 0 auto;
 // border: 1px solid black;
 padding:1.5em;
-
 `
+const ContentDiv = styled.div`
+position: relative;
+border: 3px solid red;`
 
 
-const Typing = () => {
+const Typing = ({timeSelected, setTimeSelected}) => {
     useEffect(() => {
         textDivRef.current.focus()
     }, [])
-    
+
     const textDivRef = useRef("")
-     
+
     const [states, setStates] = useState({
         startTime: 0,
         elapsedTime: "",
+        timeChosen: "",
         textToBeTyped: "",
         typedWords: [],
         errors: [],
@@ -49,8 +61,17 @@ const Typing = () => {
         originalText: []
     })
 
+    const [timeLeft, setTimeLeft] = useState({
+        m:0 ,
+        s:0 
+    })
+
     const [dataTyped, setDataTyped] = useState("")
 
+    const timer = () => {
+    setTimeLeft({...timeLeft, m:timeSelected})
+   
+    }
 
     const words = [
         "Everybody lies. Cops lie. Lawyers lie. Witnesses lie. The victim lie. A trial is a contest of lies. And everybody on the courtroom knows this. The judge knows this. Even the jury knows this. They come into the buildings knowing they will be lied to. They take their seats in the box and agree to be lied to. The trick if you are sitting at the defense table is to be patient. To wait. Not for just any lie. But for the one you can grab on to and forge like hot iron into a sharpened blade. You then use that blade to rip the case open and spill its guts out on the floor. That’s my job, to forge the blade. To sharpen it. To use it without mercy or conscience. To be the truth in a place where everybody lies.",
@@ -66,7 +87,7 @@ const Typing = () => {
 
     const onChangeFunction = (e) => {
         const inputValue = e.target.innerText
-        if (inputValue.split(" ").length === text.length+1 ) {
+        if (inputValue.split(" ").length === text.length + 1) {
             setStates(prev => ({ ...prev, typedWords: [...prev.typedWords, inputValue] }))
             setStates(prev => ({ ...prev, originalText: [...prev.originalText, text.join(" ")] }))
             textDivRef.current.innerText = ""
@@ -75,30 +96,35 @@ const Typing = () => {
         console.log(inputValue)
         console.log(e)
         console.log(textDivRef.current.innerText)
-      
+        console.log(timeSelected)
+
 
         // check errors and correct elements
         for (let char of inputValue) {
-          
-                const indexOfChar = inputValue.indexOf(char)
-               randomWord.charAt(indexOfChar)==char?console.log("correct"):console.log("incorrect")
-            if (randomWord.charAt(indexOfChar)==char) {
-            inputValue.innerHTML=`<span style="color:red">${char} </span>`
-        }  
-        }
-      }
 
-    
+            const indexOfChar = inputValue.indexOf(char)
+            randomWord.charAt(indexOfChar) === char ? console.log("correct") : console.log("incorrect")
+            if (randomWord.charAt(indexOfChar) === char) {
+                inputValue.innerHTML = `<span style="color:red">${char} </span>`
+            }
+        }
+    }
+
+
 
     return (
 
         <>
             <Nav />
-
             <TypingContainer>
+                <p>00:00:00</p>
                 <TypingArea>
-                    <Div>{randomWord} </Div>
-                    <TextDiv contentEditable onInput={(e) => onChangeFunction(e)} ref={textDivRef} defaultValue={textDivRef.current.value} ></TextDiv>
+                        <Div>{randomWord} </Div>
+                    <ContentDiv>
+                        <TimerDiv>{timeLeft.m}<span>m</span>:{timeLeft.s}<span>s</span></TimerDiv>
+                        <TextDiv contentEditable onInput={(e) => onChangeFunction(e)} ref={textDivRef} defaultValue={textDivRef.current.value} >
+                        </TextDiv>
+                    </ContentDiv>
 
                 </TypingArea>
             </TypingContainer>
