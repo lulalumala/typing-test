@@ -43,7 +43,7 @@ cursor:pointer;
 
 `
 
-const Home = () => {
+const Home = ({timeSelected, setTimeSelected}) => {
 
     return (
         <>
@@ -54,11 +54,13 @@ const Home = () => {
             <HomeHead>Check Your Typing Skills</HomeHead>
             <HomePara>Select your Test</HomePara>
            
-                <SelectOption>
+                        <SelectOption onChange={(e) => 
+                            setTimeSelected(e.target.value)
+                        }>
                 <option value="">Please select time</option>
-                <option>1 minute</option>
-                <option>2 minutes</option>
-                <option>3 minutes</option>
+                <option value={1}>1 minute</option>
+                <option value={2}>2 minutes</option>
+                <option value={3}>3 minutes</option>
             
             </SelectOption>
             <SelectOption>
@@ -70,7 +72,8 @@ const Home = () => {
             </SelectOption>
             <Button>Start Test</Button>
             </SelectContainer>
-            </Container>
+                </Container>
+                {console.log(timeSelected)}
         </HomeContainer>
         </>
     )
