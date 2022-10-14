@@ -32,6 +32,7 @@ const Nav = () => {
                 <P><Link to="/result">Result</Link></P>
                 <P><Link to="/signup">Signup</Link></P>
                 <P><Link to="/login">Login</Link></P>
+                <P><Link to="/Modals">Modals</Link></P>
                 </Div>
                 </Container>
         </NavContainer>

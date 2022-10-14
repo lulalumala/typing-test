@@ -94,6 +94,7 @@ const Signup=()=>{
 
         }
     }
+    
     return(
         <>
         <Nav/>
