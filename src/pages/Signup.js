@@ -75,6 +75,9 @@ const Signup=()=>{
             setError({...error, confirmError:"Please confirm your password"})
           }
           else{
+            console.log(input)
+            await addDoc(collection(db,"typing-test"),input)
+            
             setInput({
                 firstName:"",
                 lastName:"",
@@ -91,6 +94,7 @@ const Signup=()=>{
 
         }
     }
+    
     return(
         <>
         <Nav/>
@@ -98,30 +102,31 @@ const Signup=()=>{
             <Container>
                 <Para>{error.firstError}</Para>
                 <Label>First Name:</Label>
-                <Input type="text"/>
+                  <Input type="text" onChange={(event)=>setInput({...input,firstName:event.target.value})}/>
 
                 <Para>{error.lastError}</Para>
                 <Label>Last Name:</Label>
-                <Input type="text"/>
+                <Input type="text" onChange={(event)=>setInput({...input,lastName:event.target.value})}/>
 
                 <Para>{error.userError}</Para>
                 <Label>UserName:</Label>
-                <Input type="text"/>
+                <Input type="text" onChange={(event)=>setInput({...input,userName:event.target.value})}/>
 
                 <Para>{error.emailError}</Para>
                 <Label>Email Address:</Label>
-                <Input type="email address"/>
+                <Input type="email address" onChange={(event)=>setInput({...input,emailAddress:event.target.value})}/>
 
                 <Para>{error.nationalityError}</Para>
                 <Label>Nationality:</Label>
-                <Input type="text"/>
+                <Input type="text" onChange={(event)=>setInput({...input,nationality:event.target.value})}/>
 
                 <Para>{error.passwordError}</Para>
                 <Label>Password:</Label>
-                <Input type="password"/>
+                <Input type="text" onChange={(event)=>setInput({...input,password:event.target.value})}/>
 
                 <Para>{error.confirmError}</Para>
                 <Label>Confirm Password:</Label>
+                <Input type="text" onChange={(event)=>setInput({...input,confirmPassword:event.target.value})}/>
                 <Button onClick={handleSignup}>Signup</Button>
                
             </Container>
@@ -129,4 +134,5 @@ const Signup=()=>{
         </>
     )
 }
+
 export default Signup
