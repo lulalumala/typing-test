@@ -3,9 +3,10 @@ import styled from "styled-components"
 import { useState } from "react"
 import { db } from "../firebase"
 import { collection, addDoc } from "firebase/firestore"; 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const NavContainer=styled.div`
 `
-const Container=styled.div`
+const Container=styled.div`const auth = getAuth(app);
 margin:0 auto;
 width:50%;
 padding:4em 0; 
@@ -36,10 +37,11 @@ margin-top:3em;`
 
 
 const Login =() => {
+
 const [message, setMessage]=useState({
 Name:"",
-Email:"",
-Password:""
+email:"",
+password:""
 })
 const [error, setError]=useState({
     nameError:"",
@@ -50,17 +52,31 @@ const [error, setError]=useState({
 const [success,setSuccess]=useState("")
 const [color,setColor]=useState("")
 
+
 const handleLogin=async()=>{
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth,email,password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        alert("Successfully logged in")
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
 try{ 
 if(message.Name===""){
 setError({...error, Name:"Please write your name"})
 }
-if(message.Email===""){
-    setError({...error, Email:"Please write your email address"})
+if(message.email===""){
+    setError({...error, email:"Please write your email address"})
 }
 
-if(message.Password===""){
-    setError({...error,Password:"Please input your password"})
+if(message.password===""){
+    setError({...error,password:"Please input your password"})
 }
 
 else{
@@ -70,8 +86,8 @@ else{
         console.log("message")
         setMessage({
             Name:"",
-            Email:"",
-            Password:""
+            email:"",
+            password:""
         })
 }
 catch(error){
@@ -92,10 +108,10 @@ catch(error){
                     <Input type="text" onChange={(event)=>setMessage({...message,Name:event.target.value})}/>
                     <Para>{error.Email}</Para>
                     <Label>Email Address:</Label>
-                    <Input type="text" onChange={(event)=>setMessage({...message,Email:event.target.value})}/>
+                    <Input type="text" onChange={(event)=>setMessage({...message,email:event.target.value})}/>
                     <Para>{error.Password}</Para>
                     <Label>Password:</Label>
-                    <Input type="text" onChange={(event)=>setMessage({...message,Password:event.target.value})}/>
+                    <Input type="text" onChange={(event)=>setMessage({...message,password:event.target.value})}/>
 
                     <Button onClick={handleLogin}>Login</Button>
 

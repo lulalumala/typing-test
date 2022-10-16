@@ -2,7 +2,11 @@ import styled from "styled-components"
 import { useState, useEffect } from "react"
 import Nav from "../components/Nav"
 import { addDoc, collection} from "firebase/firestore"
-import { db } from "../firebase"
+import app, { db } from "../firebase"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+// import { FirebaseApp } from "firebase/app"
+
 const SignContainer=styled.div``
 const Container=styled.div`
 margin:0 auto; 
@@ -24,7 +28,8 @@ background:#759F82;
 border:none;
 border-radius:5px; 
 color:white;
-margin-left:15em;
+margin-left:25em;
+margin-top:2em;
 `
 const Para=styled.p``
 
@@ -40,6 +45,8 @@ const Signup=()=>{
         confirmPassword:""
     })
 
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
     const [message, setMessage]=useState()
     const [error,setError]=useState({
         firstError:"",
@@ -51,7 +58,27 @@ const Signup=()=>{
         confirmError:""
     })
 
+    const auth = getAuth(app);
+
+
     const handleSignup=async()=>{
+
+      createUserWithEmailAndPassword(auth, email,password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        alert("Succesfully registered")
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        // const errorMessage = error.message;
+        alert(errorCode)
+        // ..
+      });
+
+     
+
         try{ 
           if(input.firstName===""){
             setError({...error, firstError:"Please write your first name"})
@@ -68,23 +95,23 @@ const Signup=()=>{
           if(input.nationality===""){
             setError({...error, nationalityError:"Please write your nationality"})
           }
-          if(input.passwordError===""){
+          if(input.password===""){
             setError({...error, passwordError:"Please write your password"})
           }
-          if(input.confirmPassword===""){
+          if(input.confirmPassword===!password){
             setError({...error, confirmError:"Please confirm your password"})
           }
           else{
-            console.log(input)
+            // console.log(input)
             await addDoc(collection(db,"typing-test"),input)
             
             setInput({
                 firstName:"",
                 lastName:"",
                 userName:"",
-                emailAddress:"",
+                // emailAddress:"",
                 nationality:"",
-                password:"",
+                // password:"",
                 confirmPassword:""
             })
           }
@@ -94,6 +121,12 @@ const Signup=()=>{
 
         }
     }
+
+
+
+    function handUp(){
+   
+    }
     
     return(
         <>
@@ -102,34 +135,41 @@ const Signup=()=>{
             <Container>
                 <Para>{error.firstError}</Para>
                 <Label>First Name:</Label>
-                  <Input type="text" onChange={(event)=>setInput({...input,firstName:event.target.value})}/>
+                  <Input type="text" onChange={(event)=>setInput(prev=>({...prev, firstName: event.target.value}))}/>
 
                 <Para>{error.lastError}</Para>
                 <Label>Last Name:</Label>
-                <Input type="text" onChange={(event)=>setInput({...input,lastName:event.target.value})}/>
+                <Input type="text" onChange={(event)=>setInput(prev=>({...prev, lastName:event.target.value}))}/>
 
                 <Para>{error.userError}</Para>
                 <Label>UserName:</Label>
-                <Input type="text" onChange={(event)=>setInput({...input,userName:event.target.value})}/>
+                <Input type="text" onChange={(event)=>setInput(prev=>({...prev, userName:event.target.value}))}/>
 
                 <Para>{error.emailError}</Para>
                 <Label>Email Address:</Label>
-                <Input type="email address" onChange={(event)=>setInput({...input,emailAddress:event.target.value})}/>
+                <Input type="email address" onChange={(e)=>setEmail(e.target.value)}/>
 
                 <Para>{error.nationalityError}</Para>
                 <Label>Nationality:</Label>
-                <Input type="text" onChange={(event)=>setInput({...input,nationality:event.target.value})}/>
+                <Input type="text" onChange={(event)=>setInput(prev=>({...prev, nationality:event.target.value}))}/>
 
                 <Para>{error.passwordError}</Para>
                 <Label>Password:</Label>
-                <Input type="text" onChange={(event)=>setInput({...input,password:event.target.value})}/>
+                <Input type="text" onChange={(e)=>setPassword(e.target.value)}/>
 
                 <Para>{error.confirmError}</Para>
                 <Label>Confirm Password:</Label>
-                <Input type="text" onChange={(event)=>setInput({...input,confirmPassword:event.target.value})}/>
+                <Input type="text" onChange={(event)=>setInput(prev=>({...prev,confirmPassword:event.target.value}))}/>
                 <Button onClick={handleSignup}>Signup</Button>
                
             </Container>
+
+{/* <Input type={"email"} placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
+<Input type={"password"} placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+<button onClick={handUp}>Signup</button> */}
+
+
+
         </SignContainer>
         </>
     )

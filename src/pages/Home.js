@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Nav from "../components/Nav"
 import styled from "styled-components"
 
@@ -70,7 +71,7 @@ const Home = ({timeSelected, setTimeSelected}) => {
                 <option>Hard</option>
                  
             </SelectOption>
-            <Button>Start Test</Button>
+            <Button><Link to="/typing">Start Test</Link></Button>
             </SelectContainer>
                 </Container>
                 {console.log(timeSelected)}
