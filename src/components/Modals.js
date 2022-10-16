@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import ClearIcon from '@mui/icons-material/Clear';
-
+const TestButton=styled.button``
  const Button=styled.button`
  padding:1em 2em;
  border:none;
@@ -10,9 +10,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 color:white;
 `
 const Div=styled.div`
-width: 200px;
-height: 200px;
-background:yellow;
 `
 const First=styled.div``
 const Cleared=styled.div``
@@ -29,15 +26,19 @@ const Modals=()=>{
         {
             show &&//short circuit
         <Div style={{width:"200px", height:"200px", background:"#759F82", borderRadius:"50%", position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)"}}>
-             <p>This is the Modal</p>
-            <Cleared onClick={()=>setShow(false)}>Retake Test</Cleared> 
+             <TestButton>Retake Test</TestButton>
+             <p>This is your Test Score</p>
+
+            <Cleared onClick={()=>setShow(false)}>Close
+            <ClearIcon/>
+            </Cleared> 
         </Div>
           
         
 
         }
         <Button onClick={(event)=>{showModal()}}>Show Modal
-        <ClearIcon/>
+       
 
         </Button>
         

@@ -67,7 +67,6 @@ const Signup=()=>{
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user)
         alert("Succesfully registered")
         // ...
       })

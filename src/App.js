@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Result from "./pages/Result";
 import Typing from "./pages/Typing";
 import Signup from "./pages/Signup";
-import Modals from "./pages/Modals";
+import Modals from "./components/Modals";
 
 function App() {
   const [timeSelected, setTimeSelected]=useState(0)
