@@ -98,7 +98,6 @@ const Typing = ({timeSelected, setTimeSelected}) => {
         console.log(textDivRef.current.innerText)
         console.log(timeSelected)
 
-
         // check errors and correct elements
         for (let char of inputValue) {
 
