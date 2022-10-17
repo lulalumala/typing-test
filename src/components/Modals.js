@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 import ClearIcon from '@mui/icons-material/Clear';
 const ModalContainer=styled.div`
-
 `
 const Container=styled.div`
 margin:0 auto;
@@ -12,8 +11,8 @@ background:#EDE4E0;
 border-radius:5px;
 box-shadow:0 0 5px #EDE4E0;`
 const TestResult=styled.div`
-width:100vw;
-height:100vh;
+// width:100vw;
+// height:100vh;
 background:#759F82;
 position:absolute;
 top:50%;
@@ -22,7 +21,6 @@ top:50%;
 const ModalShape=styled.div`
 display:flex;
 gap:4em;
-
 `
 const Para=styled.p``
 const Paragraph=styled.p`
@@ -80,6 +78,7 @@ const Modals=()=>{
                 <ShapeOne >
                 <Para>WPM</Para>
                 <ParaValue>00</ParaValue>
+                <Para>Speed</Para>
                 </ShapeOne>
                  <ParaSign>
                  <ClearIcon/>
@@ -87,13 +86,13 @@ const Modals=()=>{
                 <ShapeOne>
                 <Para>ACCURACY</Para>
                 <ParaValue>00</ParaValue>
-
+                <Para>Accuracy</Para>
                 </ShapeOne>
                  <ParaSign>=</ParaSign> 
                 <ShapeOne>
                 <Para>WPM</Para>
                 <ParaValue>00</ParaValue>
-
+                <Para>Net Speed</Para>
                 </ShapeOne>
              </ModalShape>
 
