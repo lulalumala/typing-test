@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Modals from "../pages/Modals";
 
 const Timer = ({timeSelected}) => {
 
@@ -22,7 +23,9 @@ const Timer = ({timeSelected}) => {
       
     
         if(timeLeft.s ==0 && timeLeft.m == 0) {
-          clearInterval(intervalId)
+            clearInterval(intervalId)
+            // showModal()
+            
         }
   
       console.log(`${timeLeft.m}:${timeLeft.s}`);

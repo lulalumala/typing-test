@@ -2,6 +2,7 @@ import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
 import Timer from "../components/Timer"
+import Modals from "./Modals"
 // import { setIndexConfiguration } from "firebase/firestore"
 
 
@@ -119,14 +120,15 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
         // decreasing timer
 
 
+        let wpm=randomWord.split("").length/timeSelected.m
 
 
 
 
         console.log(inputValue)
         console.log(e)
-        console.log(textDivRef.current.innerText)
         console.log(timeSelected.m)
+        console.log(textDivRef.current.innerText)
 
 
         // check errors and correct elements
@@ -134,9 +136,15 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
 
             const indexOfChar = inputValue.indexOf(char)
             randomWord.charAt(indexOfChar) === char ? console.log("correct") : console.log("incorrect")
-            if (randomWord.charAt(indexOfChar) === char) {
-                inputValue.innerHTML = `<span style="color:red">${char} </span>`
-            }
+            // if (randomWord.charAt(indexOfChar) === char) {
+            //     setStates(prev => ({ ...states, correctWords: char }))
+            //     console.log(states.correctWords)
+            //     // inputValue.innerHTML = `<span style="color:red">${char} </span>`
+            // }
+            // else {
+            //     setStates(prev => ({ ...states, errors: char }))
+
+            // }
         }
     }
 
