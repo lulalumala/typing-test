@@ -18,18 +18,15 @@ width:50vw;
 height: 60vh;
 padding: 1em;
 border-radius: 10px;
-`
-
 background:#759F82;
 position:absolute;
 top:50%;
  left:50%;
-  transform:translate(-50%,-50%);`
+  transform:translate(-50%, -50%);`
   
 const ModalShape = styled.div`
 display:flex;
 gap:4em;
-
 `
 const Para=styled.p`
 color:white;`
