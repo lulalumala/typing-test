@@ -17,7 +17,8 @@ const TestResult = styled.div`
 width:50vw;
 height: 60vh;
 padding: 1em;
-border-radius: 10px;`
+border-radius: 10px;
+`
 
 background:#759F82;
 position:absolute;
