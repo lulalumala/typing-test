@@ -37,8 +37,8 @@ background:#5B6366;
 border:none
 display:flex;
 justify-content:center;
-// align-items:centlineer;
-flex-direction:column;`
+// align-items:center;
+// flex-direction:column;`
 
 const TestButton=styled.button`
 padding:1.5em 5em;

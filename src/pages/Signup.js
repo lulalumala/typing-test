@@ -76,9 +76,7 @@ const Signup=()=>{
         alert(errorCode)
         // ..
       });
-
-     
-
+      
         try{ 
           if(input.firstName===""){
             setError({...error, firstError:"Please write your first name"})
