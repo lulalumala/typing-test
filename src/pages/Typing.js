@@ -1,8 +1,8 @@
-import Nav from "../components/Nav"
-import styled from "styled-components"
-import { useRef, useState, useEffect } from "react"
-import Timer from "../components/Timer"
-import Modals from "../components/Modals"
+import Nav from "../components/Nav";
+import styled from "styled-components";
+import { useRef, useState, useEffect } from "react";
+import Timer from "../components/Timer";
+import Modals from "../components/Modals";
 
 
 const TypingContainer = styled.div`
@@ -41,9 +41,20 @@ padding:1.5em;
 const ContentDiv = styled.div`
 position: relative;
 `
+const TypingDiv = styled.div`
+position: relative;
+`
 
+const ModalDiv = styled.div`
+position: absolute;
+top: 0;
+left: 0;
+z-index:10;
+width: 100vw;
+height: 100vh;
+`
 
-const Typing = ({ timeSelected, setTimeSelected }) => {
+const Typing = ({ timeSelected, show, setShow, timeLeft, setTimeLeft }) => {
     useEffect(() => {
         textDivRef.current.focus()
         // const timer = () => {
@@ -121,33 +132,34 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
         // decreasing timer
 
 
-        let wpm=randomWord.split("").length/timeSelected.m
+        let wpm = randomWord.split("").length / timeSelected.m
 
 
 
 
         console.log(states)
-      
+
         let correct = []
         let incorrect = []
-        
+
 
         // check errors and correct elements
         for (let char of inputValue) {
 
             const indexOfChar = randomWord.indexOf(char)
-            randomWord.charAt(indexOfChar) === char ? correct.push("correct"):incorrect.push("incorrect")
-                
-                
-                // setting correct and incorrect states
-                // setStates(prev => ({ ...prev, correctChars: [...prev.correctChars, "correct"] })) : setStates(prev => ({ ...prev, incorrectChars: [...prev.incorrectChars, "incorrect"] }))
-            
-    //    console.log(`The index of ${char} is ${indexOfChar}`)  
+            randomWord.charAt(indexOfChar) === char ? correct.push("correct") : incorrect.push("incorrect")
+
+
+            // setting correct and incorrect states
+            // setStates(prev => ({ ...prev, correctChars: [...prev.correctChars, "correct"] })) : setStates(prev => ({ ...prev, incorrectChars: [...prev.incorrectChars, "incorrect"] }))
+
+            //    console.log(`The index of ${char} is ${indexOfChar}`)  
             console.log(inputValue.length)
-//          
+            //          
         }
         console.log(correct)
         console.log(incorrect)
+        console.log(setShow)
     }
 
 
@@ -159,23 +171,28 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
 
     return (
 
-        <>
+        <TypingDiv>
+            {show && 
+            <ModalDiv >
+                <Modals setShow={setShow}/>
+            </ModalDiv>
+        }
             <Nav />
             <TypingContainer>
+
                 <TypingArea>
                     <Div>{randomWord} </Div>
                     <ContentDiv>
                         <TimerDiv>
-                            <Timer timeSelected={timeSelected} />
+                            <Timer timeSelected={timeSelected} show={show} setShow={setShow} />
                         </TimerDiv>
                         {/* <TimerDiv>{timeLeft.m}<span>m</span>:{timeLeft.s}<span>s</span></TimerDiv> */}
                         <TextDiv contentEditable onInput={(e) => onChangeFunction(e)} ref={textDivRef} defaultValue={textDivRef.current.value} >
                         </TextDiv>
                     </ContentDiv>
-
                 </TypingArea>
             </TypingContainer>
-        </>
+        </TypingDiv>
     )
 }
 export default Typing

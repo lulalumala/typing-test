@@ -9,16 +9,18 @@ import Signup from "./pages/Signup";
 import Modals from "./components/Modals";
 
 function App() {
-  const [timeSelected, setTimeSelected]=useState(0)
+  const [timeSelected, setTimeSelected] = useState(0)
+
+  const [show, setShow]=useState(false)
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home timeSelected={ timeSelected } setTimeSelected={setTimeSelected} />}></Route>
         <Route path="/login" element={<Login/>} ></Route>
-        <Route path="/typing" element={<Typing timeSelected={ timeSelected } setTimeSelected={setTimeSelected}/>} ></Route>
+        <Route path="/typing" element={<Typing timeSelected={timeSelected} show={show} setShow={setShow}/>}></Route>
         <Route path="/result" element={<Result/>} ></Route>
         <Route path="/signup" element={<Signup/>} ></Route>
-        <Route path="/modals" element={<Modals />}></Route>
+        <Route path="/modals" element={<Modals />} ></Route>
       </Routes>
     </BrowserRouter>
   )
