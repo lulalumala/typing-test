@@ -22,22 +22,22 @@ const ModalShape=styled.div`
 display:flex;
 gap:4em;
 `
-const Para=styled.p``
+const Para=styled.p`
+color:white;`
 const Paragraph=styled.p`
 text-align:center;`
 const ParaValue=styled.p``
 const ParaSign=styled.div`
 padding-top:5.5em;`
 const ShapeOne=styled.div`
-border-radius:50%;
 width:200px;
 height:200px;
+border-radius:50%;
 background:#5B6366;
-border:none;
-border-radius:2px solid black;
+border:none
 display:flex;
 justify-content:center;
-align-items:center;
+// align-items:centlineer;
 flex-direction:column;`
 
 const TestButton=styled.button`
@@ -94,6 +94,7 @@ const Modals=()=>{
                 <ParaValue>00</ParaValue>
                 <Para>Net Speed</Para>
                 </ShapeOne>
+                
              </ModalShape>
 
            
