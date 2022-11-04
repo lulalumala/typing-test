@@ -55,7 +55,7 @@ const [color,setColor]=useState("")
 
 const handleLogin=async()=>{
     const auth = getAuth();
-    signInWithEmailAndPassword(auth,email,password)
+    signInWithEmailAndPassword(auth,message.email,message.password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import Modals from "../pages/Modals";
-
+import Modals from "../components/Modals";
 const Timer = ({timeSelected}) => {
 
-    const [timeLeft, setTimeLeft] = useState({
+   const [timeLeft, setTimeLeft] = useState({
         m: timeSelected,
         s: 0,
       });
@@ -28,7 +27,7 @@ const Timer = ({timeSelected}) => {
             
         }
   
-      console.log(`${timeLeft.m}:${timeLeft.s}`);
+      
   return ()=>clearInterval(intervalId)
   
     }, [timeLeft.m, timeLeft.s]);

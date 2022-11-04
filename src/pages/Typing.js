@@ -2,8 +2,7 @@ import Nav from "../components/Nav"
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
 import Timer from "../components/Timer"
-import Modals from "./Modals"
-// import { setIndexConfiguration } from "firebase/firestore"
+import Modals from "../components/Modals"
 
 
 const TypingContainer = styled.div`
@@ -58,6 +57,8 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
         // setInterval(timer, 1000)
     }, [])
 
+
+
     // const [timeLeft, setTimeLeft] = useState({
     //     m: timeSelected,
     //     s: 0,
@@ -87,8 +88,8 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
         timeChosen: "",
         textToBeTyped: "",
         typedWords: [],
-        errors: [],
-        correctWords: [],
+        incorrectChars: [],
+        correctChars: [],
         originalText: []
     })
 
@@ -111,7 +112,7 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
 
     const onChangeFunction = (e) => {
         const inputValue = e.target.innerText
-        if (inputValue.split(" ").length === text.length + 1) {
+        if (inputValue.length === randomWord.length) {
             setStates(prev => ({ ...prev, typedWords: [...prev.typedWords, inputValue] }))
             setStates(prev => ({ ...prev, originalText: [...prev.originalText, text.join(" ")] }))
             textDivRef.current.innerText = ""
@@ -125,26 +126,28 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
 
 
 
-        console.log(inputValue)
-        console.log(e)
-        console.log(timeSelected.m)
-        console.log(textDivRef.current.innerText)
+        console.log(states)
+      
+        let correct = []
+        let incorrect = []
+        
 
         // check errors and correct elements
         for (let char of inputValue) {
 
-            const indexOfChar = inputValue.indexOf(char)
-            randomWord.charAt(indexOfChar) === char ? console.log("correct") : console.log("incorrect")
-            // if (randomWord.charAt(indexOfChar) === char) {
-            //     setStates(prev => ({ ...states, correctWords: char }))
-            //     console.log(states.correctWords)
-            //     // inputValue.innerHTML = `<span style="color:red">${char} </span>`
-            // }
-            // else {
-            //     setStates(prev => ({ ...states, errors: char }))
-
-            // }
+            const indexOfChar = randomWord.indexOf(char)
+            randomWord.charAt(indexOfChar) === char ? correct.push("correct"):incorrect.push("incorrect")
+                
+                
+                // setting correct and incorrect states
+                // setStates(prev => ({ ...prev, correctChars: [...prev.correctChars, "correct"] })) : setStates(prev => ({ ...prev, incorrectChars: [...prev.incorrectChars, "incorrect"] }))
+            
+    //    console.log(`The index of ${char} is ${indexOfChar}`)  
+            console.log(inputValue.length)
+//          
         }
+        console.log(correct)
+        console.log(incorrect)
     }
 
 
