@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 import ClearIcon from '@mui/icons-material/Clear';
 const ModalContainer=styled.div`
-
 `
 const Container=styled.div`
 margin:0 auto;
@@ -12,8 +11,8 @@ background:#EDE4E0;
 border-radius:5px;
 box-shadow:0 0 5px #EDE4E0;`
 const TestResult=styled.div`
-width:100vw;
-height:100vh;
+// width:100vw;
+// height:100vh;
 background:#759F82;
 position:absolute;
 top:50%;
@@ -22,25 +21,24 @@ top:50%;
 const ModalShape=styled.div`
 display:flex;
 gap:4em;
-
 `
-const Para=styled.p``
+const Para=styled.p`
+color:white;`
 const Paragraph=styled.p`
 text-align:center;`
 const ParaValue=styled.p``
 const ParaSign=styled.div`
 padding-top:5.5em;`
 const ShapeOne=styled.div`
-border-radius:50%;
 width:200px;
 height:200px;
+border-radius:50%;
 background:#5B6366;
-border:none;
-border-radius:2px solid black;
+border:none
 display:flex;
 justify-content:center;
-align-items:center;
-flex-direction:column;`
+// align-items:center;
+// flex-direction:column;`
 
 const TestButton=styled.button`
 padding:1.5em 5em;
@@ -80,6 +78,7 @@ const Modals=()=>{
                 <ShapeOne >
                 <Para>WPM</Para>
                 <ParaValue>00</ParaValue>
+                <Para>Speed</Para>
                 </ShapeOne>
                  <ParaSign>
                  <ClearIcon/>
@@ -87,14 +86,15 @@ const Modals=()=>{
                 <ShapeOne>
                 <Para>ACCURACY</Para>
                 <ParaValue>00</ParaValue>
-
+                <Para>Accuracy</Para>
                 </ShapeOne>
                  <ParaSign>=</ParaSign> 
                 <ShapeOne>
                 <Para>WPM</Para>
                 <ParaValue>00</ParaValue>
-
+                <Para>Net Speed</Para>
                 </ShapeOne>
+                
              </ModalShape>
 
            

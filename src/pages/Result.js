@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Nav from "../components/Nav"
 
@@ -43,11 +44,11 @@ const Result = () => {
                     <P>WPM</P>
                 </Div>
                 <Div>
-                    <ResultTest>00</ResultTest>
+                    <ResultTest>00%</ResultTest>
                     <P>Accuracy</P></Div>
             </ResultDiv>
             <ButtonContainer>
-                <Button>Retake Test</Button>
+                <Button><Link to="/">Retake Test</Link></Button>
             </ButtonContainer>
         </ResultContainer>
     </>

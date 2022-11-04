@@ -76,9 +76,7 @@ const Signup=()=>{
         alert(errorCode)
         // ..
       });
-
-     
-
+      
         try{ 
           if(input.firstName===""){
             setError({...error, firstError:"Please write your first name"})
@@ -124,9 +122,9 @@ const Signup=()=>{
 
 
 
-    function handUp(){
+    // function handUp(){
    
-    }
+    // }
     
     return(
         <>
@@ -153,10 +151,10 @@ const Signup=()=>{
                 <Label>Nationality:</Label>
                 <Input type="text" onChange={(event)=>setInput(prev=>({...prev, nationality:event.target.value}))}/>
 
-                <Para>{error.passwordError}</Para>
+                
                 <Label>Password:</Label>
                 <Input type="text" onChange={(e)=>setPassword(e.target.value)}/>
-
+                <Para>{error.passwordError}</Para>
                 <Para>{error.confirmError}</Para>
                 <Label>Confirm Password:</Label>
                 <Input type="text" onChange={(event)=>setInput(prev=>({...prev,confirmPassword:event.target.value}))}/>
