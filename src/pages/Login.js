@@ -58,7 +58,6 @@ const [color,setColor]=useState("")
 
 const auth = getAuth(app);
 const handleLogin=async()=>{
-
     const auth = getAuth();
     signInWithEmailAndPassword(auth,message.email,message.password)
 
@@ -105,8 +104,6 @@ catch(error){
     console.log("Unable to login:",error)
 }
 }
-
-
     return (
         <>
             <Nav/>
@@ -122,7 +119,6 @@ catch(error){
                     <Para>{error.Password}</Para>
                     <Label>Password:</Label>
                     <Input type="text" onChange={(e)=>setPassword(e.target.value)}/>
-
                     <Button onClick={handleLogin}>Login</Button>
 
                 </Container>

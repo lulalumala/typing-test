@@ -109,7 +109,8 @@ const Typing = ({ timeSelected, setTimeSelected }) => {
     ]
     const randomWord = words[Math.floor(Math.random() * words.length)]
     const text = randomWord.split(" ")
-
+   
+    
     const onChangeFunction = (e) => {
         const inputValue = e.target.innerText
         if (inputValue.length === randomWord.length) {
