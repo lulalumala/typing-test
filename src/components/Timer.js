@@ -1,13 +1,15 @@
+import { SettingsPhoneTwoTone } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Modals from "../components/Modals";
-const Timer = ({timeSelected}) => {
+const Timer = ({timeSelected, show, setShow}) => {
 
-   const [timeLeft, setTimeLeft] = useState({
-        m: timeSelected,
-        s: 0,
-      });
+  const [timeLeft, setTimeLeft] = useState({
+    m: timeSelected,
+    s: 0
+  });
 
-    useEffect(() => {
+  useEffect(() => {
+  
   
         const intervalId = setInterval(() => {
           if (timeLeft.s == 0) {
@@ -20,13 +22,14 @@ const Timer = ({timeSelected}) => {
   
         }, 1000);
       
-    
-        if(timeLeft.s ==0 && timeLeft.m == 0) {
-            clearInterval(intervalId)
-            // showModal()
-            
+       
+    if (timeLeft.m == 0 && timeLeft.s==0) {
+          clearInterval(intervalId)
+          setShow(true)  
+                        
         }
-  
+    
+  console.log(show)
       
   return ()=>clearInterval(intervalId)
   
