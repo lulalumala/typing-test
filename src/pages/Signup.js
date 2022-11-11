@@ -5,6 +5,8 @@ import { addDoc, collection} from "firebase/firestore"
 import app, { db } from "../firebase"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom"
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 // import { FirebaseApp } from "firebase/app"
 
@@ -18,6 +20,7 @@ const SignForm=styled.div`
 border:2px solid #EDE4E0;
 margin-top:2em;
 padding-bottom:2em;
+
 
 `
 const Label=styled.p`
@@ -36,12 +39,13 @@ const Button=styled.button`
 padding:1em 2em;
 background:#759F82;
 border:none;
-border-radius:5px; 
+border-radius:25px; 
 color:white;
-margin-left:25em;
+margin-left:10em;
 margin-top:2em;
 font-weight:bold;
 font-size:medium;
+width:50%;
 `
 const Para=styled.p`
 color:red;
@@ -182,8 +186,8 @@ const Signup=()=>{
                 <Para>{error.confirmError}</Para>
                 <Button onClick={handleSignup}>Signup</Button>
 
-                <Para style={{color:"#759F82"}}>Already Registered?</Para>
-                <Para ><Link to="/Login">Login </Link></Para>
+                <Para style={{color:"#759F82"}}>Already have an account?<Link to="/Login"> Login</Link></Para>
+                <Para ></Para>
                 </SignForm>
             </Container>
 

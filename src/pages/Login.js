@@ -22,7 +22,7 @@ outline:none;
 border:none;
 border-bottom:2px solid #759F82;
 width:40vw;
-padding:2em;
+padding-top:3em;
 `
 const Label=styled.p`
 padding:1.5em 0;
@@ -32,11 +32,14 @@ const Para=styled.p``
 const Button=styled.button`
 padding:1em 2em;
 border:none;
-border-radius:5px;
+border-radius:25px;
 background:#759F82;
 color:white;
-margin-left:20em;
-margin-top:3em;`
+margin-top:3em;
+margin-left:10em;
+width:50%;
+font-size:medium;
+font-weight:bold;`
 
 
 const Login =() => {
