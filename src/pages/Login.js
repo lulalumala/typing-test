@@ -13,7 +13,8 @@ padding:4em 0;
 
 `
 const LoginForm=styled.div`
-border:2px solid #EDE4E0;`
+border:2px solid #EDE4E0;
+padding:3em;`
 const Input=styled.input`
 display:flex;
 flex-direction:column;
