@@ -61,6 +61,9 @@ const Typing = ({ timeSelected, show, setShow, timeLeft, setTimeLeft, startTimer
     const randomWord = words[Math.floor(Math.random() * words.length)]
     const text = randomWord.split(" ")
 
+
+
+
     return (
 
         <TypingDiv>
