@@ -12,14 +12,17 @@ width:50%;
 padding:4em 0; 
 
 `
+const LoginForm=styled.div`
+border:2px solid #EDE4E0;`
 const Input=styled.input`
 display:flex;
 flex-direction:column;
 justify-content:center;
 outline:none;
 border:none;
-border-bottom:2px  solid #759F82;
+border-bottom:2px solid #759F82;
 width:40vw;
+padding-top:3em;
 `
 const Label=styled.p`
 padding:1.5em 0;
@@ -29,25 +32,26 @@ const Para=styled.p``
 const Button=styled.button`
 padding:1em 2em;
 border:none;
-border-radius:5px;
+border-radius:25px;
 background:#759F82;
 color:white;
-margin-left:20em;
-margin-top:3em;`
+margin-top:3em;
+margin-left:10em;
+width:50%;
+font-size:medium;
+font-weight:bold;`
 
 
 const Login =() => {
 
 const [message, setMessage]=useState({
-Name:"",
 email:"",
 password:""
 })
 const [email,setEmail]=useState("")
 const [password,setPassword]=useState("")
 
-const [error, setError]=useState({
-    nameError:"",
+const [errors, setErrors]=useState({
     emailError:"",
     passwordError:""
 })
@@ -77,28 +81,30 @@ const handleLogin=async()=>{
       });
 
 try{ 
-// if(message.Name===""){
-// setError({...error, Name:"Please write your name"})
-// }
-if(email===""){
-    setError({...error, email:"Please write your email address"})
+
+if(message.email===""){
+    setErrors("Please write your email address")
 }
 
-if(password===""){
-    setError({...error,password:"Please input your password"})
+if(message.password===""){
+    setErrors("Please input your password")
 }
 
 else{
     await addDoc(collection(db, "typing-test"), message)
         setSuccess("Successfully logged in")
-        setColor("#38E54D")}
-        // console.log("message")
+        setColor("#38E54D")
+
         setMessage({
-            Name:"",
             email:"",
             password:""
-        })
-}
+       })
+
+    }
+     
+
+    }
+
 catch(error){
 
     console.log("Unable to login:",error)
@@ -110,17 +116,15 @@ catch(error){
             <NavContainer>
                 <Container>
                     <Para>{success}</Para>
-                    <Para>{error.Name}</Para>
-                    <Label>UserName:</Label>
-                    <Input type="text" onChange={(event)=>setMessage({...message,Name:event.target.value})}/>
-                    <Para>{error.Email}</Para>
-                    <Label>Email Address:</Label>
-                    <Input type="text" onChange={(e)=>setEmail(e.target.value)}/>
-                    <Para>{error.Password}</Para>
-                    <Label>Password:</Label>
-                    <Input type="text" onChange={(e)=>setPassword(e.target.value)}/>
-                    <Button onClick={handleLogin}>Login</Button>
+                   <LoginForm>
+                    <Input type="text" placeholder="Email Address" onChange={(e)=>setMessage({email:e.target.value})}/>
+                    <Para>{errors.emailError}</Para>
 
+                    <Input type="text" placeholder="Password" onChange={(e)=>setMessage({password:e.target.value})}/>
+                    <Para>{errors.passwordError}</Para>
+
+                    <Button onClick={handleLogin}>Login</Button>
+                    </LoginForm>
                 </Container>
             </NavContainer>
         </>
